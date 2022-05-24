@@ -1,75 +1,47 @@
 {
-  "name": "invoice_app",
-  "version": "0.1.0",
+  "name": "app",
+  "version": "0.0.1",
+  "description": "A Quasar Project",
+  "productName": "Quasar App",
+  "author": "vitaliitrehubov <tregubovvakharkov@gmail.com>",
   "private": true,
   "scripts": {
-    "serve": "vue-cli-service serve",
-    "build": "vue-cli-service build",
-    "test:unit": "vue-cli-service test:unit",
-    "lint": "vue-cli-service lint"
+    "lint": "eslint --ext .js,.vue ./",
+    "format": "prettier --write \"**/*.{js,vue,scss,html,md,json}\" --ignore-path .gitignore",
+    "test": "echo \"No test specified\" && exit 0"
   },
   "dependencies": {
+    "vue-i18n": "^9.0.0",
+    "vuex": "^4.0.1",
     "@quasar/extras": "^1.0.0",
     "core-js": "^3.6.5",
-    "i18n": "^0.15.0",
-    "quasar": "^2.0.0",
+    "quasar": "^2.6.0",
     "vue": "^3.0.0",
-    "vue-i18n": "^9.1.10",
-    "vue-router": "^4.0.0-0",
-    "vuex": "^4.0.0-0"
+    "vue-router": "^4.0.0"
   },
   "devDependencies": {
-    "@vue/cli-plugin-babel": "~4.5.15",
-    "@vue/cli-plugin-eslint": "~4.5.15",
-    "@vue/cli-plugin-router": "~4.5.15",
-    "@vue/cli-plugin-unit-jest": "~4.5.15",
-    "@vue/cli-plugin-vuex": "~4.5.15",
-    "@vue/cli-service": "~4.5.15",
-    "@vue/compiler-sfc": "^3.0.0",
-    "@vue/test-utils": "^2.0.0-0",
-    "babel-eslint": "^10.1.0",
-    "eslint": "^6.7.2",
-    "eslint-plugin-vue": "^7.0.0",
-    "sass": "^1.26.5",
-    "sass-loader": "^8.0.2",
-    "typescript": "~3.9.3",
-    "vue-cli-plugin-quasar": "~5.0.1",
-    "vue-jest": "^5.0.0-0"
-  },
-  "eslintConfig": {
-    "root": true,
-    "env": {
-      "node": true
-    },
-    "extends": [
-      "plugin:vue/vue3-essential",
-      "eslint:recommended"
-    ],
-    "parserOptions": {
-      "parser": "babel-eslint"
-    },
-    "rules": {},
-    "overrides": [
-      {
-        "files": [
-          "**/__tests__/*.{j,t}s?(x)",
-          "**/tests/unit/**/*.spec.{j,t}s?(x)"
-        ],
-        "env": {
-          "jest": true
-        }
-      }
-    ]
+    "@babel/eslint-parser": "^7.13.14",
+    "eslint": "^8.10.0",
+    "eslint-plugin-vue": "^8.5.0",
+    "eslint-webpack-plugin": "^3.1.1",
+    "eslint-config-prettier": "^8.1.0",
+    "prettier": "^2.5.1",
+    "@quasar/app-webpack": "^3.0.0"
   },
   "browserslist": [
-    "> 1%",
-    "last 2 versions",
-    "not dead"
+    "last 10 Chrome versions",
+    "last 10 Firefox versions",
+    "last 4 Edge versions",
+    "last 7 Safari versions",
+    "last 8 Android versions",
+    "last 8 ChromeAndroid versions",
+    "last 8 FirefoxAndroid versions",
+    "last 10 iOS versions",
+    "last 5 Opera versions"
   ],
-  "jest": {
-    "preset": "@vue/cli-plugin-unit-jest",
-    "transform": {
-      "^.+\\.vue$": "vue-jest"
-    }
+  "engines": {
+    "node": ">= 12.22.1",
+    "npm": ">= 6.13.4",
+    "yarn": ">= 1.21.1"
   }
 }
