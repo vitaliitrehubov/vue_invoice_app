@@ -1,8 +1,6 @@
 <template>
   <div>
-    <button
-      @click="switchLang"
-    >{{ i18n.global.locale === 'en' ? 'Змінити мову на Українська' : 'Switch to English' }}
+    <button class="btn" @click="switchLang">{{ i18n.global.locale === 'en' ? 'Змінити мову на Українська' : 'Switch to English' }}
     </button>
     <h1>{{ $t('common.labels.invoice', { number: 9 }) }}</h1>
   </div>
