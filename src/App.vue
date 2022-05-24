@@ -1,30 +1,20 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link to="/about">About</router-link>
+  <div>
+    <button
+      @click="switchLang"
+    >{{ i18n.global.locale === 'en' ? 'Змінити мову на Українська' : 'Switch to English' }}
+    </button>
+    <h1>{{ $t('common.labels.invoice', { number: 9 }) }}</h1>
   </div>
-  <router-view/>
+  <router-view />
 </template>
 
+<script setup>
+import { i18n } from '@/plugins/i18n'
+const switchLang = () => {
+  i18n.global.locale = i18n.global.locale === 'en' ? 'ua' : 'en'
+}
+</script>
+
 <style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-
-#nav {
-  padding: 30px;
-
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
-}
 </style>
