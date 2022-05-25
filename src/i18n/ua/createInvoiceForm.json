@@ -5,5 +5,10 @@
   "streetAddress": "Назва Вулиці",
   "zipCode": "Поштовий Індекс",
   "city": "Місто",
-  "country": "Країна"
+  "country": "Країна",
+  "billTo": "Дані Клієнта",
+  "billFrom": "Дані Постачальника",
+  "discard": "Очистити",
+  "createInvoice": "Створити Квитанцію",
+  "createDraft": "Створити Чорновик"
 }

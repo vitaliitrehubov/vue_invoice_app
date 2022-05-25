@@ -5,5 +5,10 @@
   "streetAddress": "Street Address",
   "zipCode": "Zip Code",
   "city": "City",
-  "country": "Country"
+  "country": "Country",
+  "billTo": "Bill to",
+  "billFrom": "Bill from",
+  "discard": "Discard",
+  "createInvoice": "Create Invoice",
+  "createDraft": "Create Draft"
 }
