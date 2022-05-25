@@ -1,0 +1,9 @@
+{
+  "newInvoice": "Нова Квитанція",
+  "clientName": "Ім'я Клієнта",
+  "clientEmail": "Імейл Клієнта",
+  "streetAddress": "Назва Вулиці",
+  "zipCode": "Поштовий Індекс",
+  "city": "Місто",
+  "country": "Країна"
+}
