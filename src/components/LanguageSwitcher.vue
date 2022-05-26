@@ -1,20 +1,20 @@
 <template>
   <div>
-    <q-btn-toggle v-model="chosenLang" toggle-color="primary" :options="langOptions" />
+    <q-btn-toggle v-model="chosenLang" toggle-color="accent" :options="langOptions" />
   </div>
 </template>
 
 <script setup>
-import { ref, watch, onBeforeMount } from 'vue'
+import { ref, watch } from 'vue'
 import { langOptions } from '../constants/languages'
 import { useI18n } from 'vue-i18n'
 
-const { locale } = useI18n({ useScope: 'global' })
-const chosenLang = ref('')
+const chosenLang = ref(
+  localStorage.getItem('languagePreference') ?? 'en'
+)
 
-onBeforeMount(() => {
-  chosenLang.value = localStorage.getItem('languagePreference') ?? 'en'
-})
+const { locale } = useI18n({ useScope: 'global' })
+locale.value = chosenLang.value
 
 watch(chosenLang, (val) => {
   localStorage.setItem('languagePreference', val)

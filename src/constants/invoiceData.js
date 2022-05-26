@@ -1,4 +1,4 @@
-export const invoiceFormData = {
+export const invoiceData = {
   client: {
     country: null,
     city: null,

@@ -1,6 +1,9 @@
 <template>
   <q-layout view="lHh Lpr lFf" class="q-pa-sm">
-    <language-switcher></language-switcher>
+    <div class="flex">
+      <language-switcher></language-switcher>
+      <mode-switcher></mode-switcher>
+    </div>
     <div class="row justify-end">
       <q-btn :label="$t('common.newInvoice')" icon="add" color="positive" @click="openPopup" />
     </div>
@@ -9,6 +12,7 @@
 </template>
 
 <script setup>
+import ModeSwitcher from '../components/ModeSwitcher.vue'
 import LanguageSwitcher from '../components/LanguageSwitcher.vue'
 import NewInvoiceForm from '../components/NewInvoiceForm.vue'
 import TheDialog from '../components/shared/TheDialog.vue'

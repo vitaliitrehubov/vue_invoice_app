@@ -1,5 +1,5 @@
 <template>
-  <the-dialog width="600" @close-popup="$emit('closePopup')">
+  <the-dialog width="600">
     <template #popupHeader>
       <p class="text-h5 q-pl-md q-ma-none">{{ $t('createInvoiceForm.newInvoice') }}</p>
     </template>
@@ -7,47 +7,47 @@
     <template #popupContent>
       <form @submit.prevent="submit">
         <div class="q-my-md">
-          <p class="text-subtitle1 q-mb-xs">{{ $t('createInvoiceForm.billTo') }}</p>
-          <div>
-            <q-input v-model="client.name" :standout="standout" :label="$t('createInvoiceForm.clientName')" />
+          <p class="text-subtitle1 q-mb-xs text-grey">{{ $t('createInvoiceForm.billTo') }}</p>
+          <div class="q-mb-sm">
+            <q-input v-model="client.name" :label="$t('createInvoiceForm.clientName')" filled />
           </div>
-          <div class="row q-gutter-sm q-my-sm">
+          <div class="row q-gutter-sm q-mb-sm">
             <div class="col">
-              <q-input v-model="client.email" :standout="standout" :label="$t('createInvoiceForm.clientEmail')" />
+              <q-input v-model="client.email" :label="$t('createInvoiceForm.clientEmail')" filled />
             </div>
             <div class="col">
-              <q-input v-model="client.street" :standout="standout" :label="$t('createInvoiceForm.streetAddress')" />
+              <q-input v-model="client.street" :label="$t('createInvoiceForm.streetAddress')" filled />
             </div>
           </div>
 
           <div class="row q-gutter-sm">
             <div class="col">
-              <q-input v-model="client.zipCode" :standout="standout" :label="$t('createInvoiceForm.zipCode')" />
+              <q-input v-model="client.zipCode" :label="$t('createInvoiceForm.zipCode')" filled />
             </div>
             <div class="col">
-              <q-input v-model="client.city" :standout="standout" :label="$t('createInvoiceForm.city')" />
+              <q-input v-model="client.city" :label="$t('createInvoiceForm.city')" filled />
             </div>
             <div class="col">
-              <q-input v-model="client.country" :standout="standout" :label="$t('createInvoiceForm.country')" />
+              <q-input v-model="client.country" :label="$t('createInvoiceForm.country')" filled />
             </div>
           </div>
         </div>
 
         <div class="q-my-md">
-          <p class="text-subtitle1 q-mb-xs">{{ $t('createInvoiceForm.billFrom') }}</p>
+          <p class="text-subtitle1 q-mb-xs text-grey">{{ $t('createInvoiceForm.billFrom') }}</p>
           <div class="q-mb-sm">
-            <q-input v-model="biller.street" :standout="standout" :label="$t('createInvoiceForm.streetAddress')" />
+            <q-input v-model="biller.street" :label="$t('createInvoiceForm.streetAddress')" filled />
           </div>
 
           <div class="row q-gutter-sm">
             <div class="col">
-              <q-input v-model="biller.zipCode" :standout="standout" :label="$t('createInvoiceForm.zipCode')" />
+              <q-input v-model="biller.zipCode" :label="$t('createInvoiceForm.zipCode')" filled />
             </div>
             <div class="col">
-              <q-input v-model="biller.city" :standout="standout" :label="$t('createInvoiceForm.city')" />
+              <q-input v-model="biller.city" :label="$t('createInvoiceForm.city')" filled />
             </div>
             <div class="col">
-              <q-input v-model="biller.country" :standout="standout" :label="$t('createInvoiceForm.country')" />
+              <q-input v-model="biller.country" :label="$t('createInvoiceForm.country')" filled />
             </div>
           </div>
         </div>
@@ -61,7 +61,8 @@
         </div>
         <div>
           <q-btn color="blue-grey-6" :label="$t('createInvoiceForm.createDraft')" />
-          <q-btn class="q-ml-sm" color="positive" :label="$t('createInvoiceForm.createInvoice')" />
+          <q-btn @click="createInvoice" class="q-ml-sm" color="positive"
+            :label="$t('createInvoiceForm.createInvoice')" />
         </div>
       </div>
     </template>
@@ -71,10 +72,9 @@
 <script setup>
 import { onBeforeUnmount } from 'vue'
 import TheDialog from './shared/TheDialog.vue'
-import { useInvoiceForm } from '../composition/useInvoiceForm.js'
+import { useInvoice } from '../composition/useInvoice.js'
 
-const standout = 'bg-grey-8 text-white'
-const { client, biller, clearForm } = useInvoiceForm()
+const { client, biller, clearForm, createInvoice } = useInvoice()
 
 onBeforeUnmount(() => clearForm())
 </script>
