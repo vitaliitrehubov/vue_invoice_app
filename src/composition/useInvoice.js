@@ -1,7 +1,7 @@
 import { ref, toRefs } from "vue";
 import { invoiceData } from "../constants/invoiceData.js";
 import { database } from "../firebase/firebaseInit.js";
-import { collection, addDoc } from "firebase/firestore";
+import { collection, addDoc, getDocs } from "firebase/firestore";
 
 export const useInvoice = () => {
   const collectionRef = collection(database, "invoices");
@@ -19,7 +19,12 @@ export const useInvoice = () => {
     }
   };
 
-  const loadInvoices = async () => {};
+  const loadInvoices = async () => {
+    let invoices = [];
+    const results = await getDocs(collectionRef);
+    invoices = results.docs.map((item) => item.data());
+    console.log(invoices);
+  };
 
   const createInvoice = async () => {
     try {

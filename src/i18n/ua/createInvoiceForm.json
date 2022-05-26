@@ -10,5 +10,6 @@
   "billFrom": "Дані Постачальника",
   "discard": "Очистити",
   "createInvoice": "Створити Квитанцію",
-  "createDraft": "Створити Чорновик"
+  "createDraft": "Створити Чорновик",
+  "requiredField": "Обов'язкове поле"
 }

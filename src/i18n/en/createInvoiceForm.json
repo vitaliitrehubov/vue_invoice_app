@@ -10,5 +10,6 @@
   "billFrom": "Bill from",
   "discard": "Discard",
   "createInvoice": "Create Invoice",
-  "createDraft": "Create Draft"
+  "createDraft": "Create Draft",
+  "requiredField": "Required"
 }
