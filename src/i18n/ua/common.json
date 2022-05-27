@@ -1,4 +1,14 @@
 {
+  "invoices": "Квитанції",
+  "invoiceId": "Номер Квитанції",
   "newInvoice": "Нова Квитанція",
-  "darkMode": "Темна Тема"
+  "darkMode": "Темна Тема",
+  "clientName": "Ім'я Клієнта",
+  "total": "Сума",
+  "status": "Статус",
+  "dueDate": "Сплатити До",
+  "pending": "Очікування",
+  "paid": "Сплачено",
+  "rowsPerPage": "К-сть рядків на 1 ст.",
+  "paginationLable": "{ firstRowIndex } - { endRowIndex } з { totalRowsNumber }"
 }

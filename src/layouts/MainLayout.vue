@@ -8,6 +8,7 @@
       <q-btn :label="$t('common.newInvoice')" icon="add" color="positive" @click="openPopup" />
     </div>
     <new-invoice-form v-if="isPopupOpen" @closePopup="closePopup"></new-invoice-form>
+    <invoices-table></invoices-table>
   </q-layout>
 </template>
 
@@ -15,7 +16,7 @@
 import ModeSwitcher from '../components/ModeSwitcher.vue'
 import LanguageSwitcher from '../components/LanguageSwitcher.vue'
 import NewInvoiceForm from '../components/NewInvoiceForm.vue'
-import TheDialog from '../components/shared/TheDialog.vue'
+import InvoicesTable from '../components/InvoicesTable.vue'
 import { ref } from 'vue'
 
 const isPopupOpen = ref(false)

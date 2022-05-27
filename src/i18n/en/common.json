@@ -1,4 +1,14 @@
 {
+  "invoices": "Invoices",
+  "invoiceId": "Invoice Id",
   "newInvoice": "New Invoice",
-  "darkMode": "Dark Mode"
+  "darkMode": "Dark Mode",
+  "clientName": "Client Name",
+  "total": "Total",
+  "status": "Status",
+  "dueDate": "Due Date",
+  "pending": "Pending",
+  "paid": "Paid",
+  "rowsPerPage": "Rows per Page",
+  "paginationLable": "{ firstRowIndex } - { endRowIndex } of { totalRowsNumber }"
 }

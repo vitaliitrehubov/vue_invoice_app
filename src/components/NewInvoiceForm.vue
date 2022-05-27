@@ -66,14 +66,9 @@
 
     <template #popupFooter>
       <div class="row justify-between">
-        <div>
-          <q-btn @click="clearForm" color="negative" :label="$t('createInvoiceForm.discard')" />
-        </div>
-        <div>
-          <q-btn color="blue-grey-6" :label="$t('createInvoiceForm.createDraft')" />
-          <q-btn :disabled="!isFormFilledOut" type="submit" class="q-ml-sm" color="positive"
-            :label="$t('createInvoiceForm.createInvoice')" />
-        </div>
+        <q-btn @click="clearForm" color="negative" :label="$t('createInvoiceForm.discard')" />
+        <q-btn :disabled="!isFormFilledOut" type="submit" class="q-ml-sm" color="positive"
+          :label="$t('createInvoiceForm.createInvoice')" />
       </div>
     </template>
   </the-dialog>
@@ -89,7 +84,7 @@ import { computed } from 'vue'
 const { t } = useI18n({ useScope: "global" });
 
 const required = (val) =>
-  val !== null && val.trim() !== ""
+  val !== null && val !== ""
     ? null
     : t("createInvoiceForm.requiredField");
 
