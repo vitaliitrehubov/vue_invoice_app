@@ -1,3 +1,6 @@
+import { i18n } from "../boot/i18n.js";
+const { t } = i18n.global;
+
 export const invoiceData = {
   client: {
     country: null,
@@ -28,3 +31,6 @@ export const invoiceData = {
     productDescr: null,
   },
 };
+
+export const ruleRequiredField = (val) =>
+  val !== null && val !== "" ? null : t("createInvoiceForm.requiredField");

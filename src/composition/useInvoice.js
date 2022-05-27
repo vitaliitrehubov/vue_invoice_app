@@ -1,4 +1,4 @@
-import { ref, toRefs } from "vue";
+import { ref, toRefs, computed } from "vue";
 import { invoiceData } from "../constants/invoiceData.js";
 import { database } from "../firebase/firebaseInit.js";
 import { collection, addDoc, getDocs } from "firebase/firestore";
@@ -18,6 +18,18 @@ export const useInvoice = () => {
       }
     }
   };
+
+  const isFormFilledOut = computed(() => {
+    for (const key in formData.value.client) {
+      if (!formData.value.client[key]) return false;
+    }
+
+    for (const key in formData.value.biller) {
+      if (!formData.value.biller[key]) return false;
+    }
+
+    return true;
+  });
 
   const loadInvoices = async () => {
     let invoices = [];
@@ -50,6 +62,7 @@ export const useInvoice = () => {
     editInvoice,
     deleteInvoice,
     clearForm,
+    isFormFilledOut,
     ...toRefs(formData.value),
   };
 };
