@@ -2,10 +2,17 @@
   <div class="q-pt-lg invoices-table">
     <q-table :rows="rows" :columns="columns" class="q-pa-lg" row-key="invoiceId"
       :rows-per-page-label="$t('common.rowsPerPage')" :pagination-label="(firstRowIndex, endRowIndex, totalRowsNumber) =>
-      $t('common.paginationLable', { firstRowIndex, endRowIndex, totalRowsNumber })">
+      $t('common.paginationLable', { firstRowIndex, endRowIndex, totalRowsNumber })"
+      :no-data-label="$t('common.noInvoicesLabel')">
       <template #top="props">
-        <div class="col-2 q-table__title">{{ $t('common.invoices') }}</div>
+        <div class="col-2 q-table__title flex items-center">{{ $t('common.invoices') }}
+          <q-badge class="q-ml-md q-pa-sm text-weight-bold" color="secondary">
+            {{ rows.length }}
+          </q-badge>
+        </div>
         <q-space />
+        <q-select filled v-model="statusFilter" :options="statuses" :label="$t('common.status')" style="width: 100px" />
+
         <q-btn flat round dense :icon="props.inFullscreen ? 'fullscreen_exit' : 'fullscreen'"
           @click="props.toggleFullscreen" class="q-ml-md" />
       </template>
@@ -13,7 +20,9 @@
       <template #body="props">
         <q-tr :props="props">
           <q-td key="invoiceId" :props="props">
-            <router-link class="invoice-link" to="/sdfsfsf"># {{ props.row.invoiceId }}</router-link>
+            <router-link class="invoice-link text-secondary"
+              :to="{ name: 'InvoicePage', params: { id: props.row.invoiceId } }">#
+              {{ props.row.invoiceId }}</router-link>
           </q-td>
           <q-td key="clientName" :props="props">{{ props.row.clientName }}</q-td>
           <q-td key="dueDate" :props="props">{{ props.row.dueDate }}</q-td>
@@ -31,17 +40,12 @@
 
 <script setup>
 import { useI18n } from 'vue-i18n'
-import { computed } from 'vue'
+import { useStore } from 'vuex'
+import { computed, ref, watch } from 'vue'
 
-const { t } = useI18n({ useScope: 'global' })
+const store = useStore()
 
-// const props = defineProps({
-//   rows: {
-//     type: Array,
-//     default: () => []
-//   }
-// })
-
+const { t, locale } = useI18n({ useScope: 'global' })
 
 const columns = computed(() => [
   { name: 'invoiceId', field: 'invoiceId', label: t('common.invoiceId'), align: 'left' },
@@ -51,15 +55,30 @@ const columns = computed(() => [
   { name: 'total', field: 'total', label: t('common.total'), sortable: true }
 ])
 
-const rows = [
-  { invoiceId: 0, clientName: 'Kate Midlton', dueDate: 'pes', status: 'Pending', total: 1000 },
-  { invoiceId: 1, clientName: 'Jorge Jr.', dueDate: 'pes', status: 'Paid', total: 500 },
-  { invoiceId: 2, clientName: 'Vitalii Trehubov A.', dueDate: 'pes', status: 'Pending', total: 1500 },
-  { invoiceId: 3, clientName: 'Mr. John', dueDate: 'pes', status: 'Paid', total: 200 },
-  { invoiceId: 4, clientName: 'Kate Huston', dueDate: 'pes', status: 'Pending', total: 900 },
-  { invoiceId: 5, clientName: 'Duglas Bob', dueDate: 'pes', status: 'Paid', total: 250 },
-  { invoiceId: 6, clientName: 'L. Unopp', dueDate: 'pes', status: 'Pending', total: 10500 }
+const statuses = [
+  { label: t('common.all'), value: 'all' },
+  { label: t('common.pending'), value: 'pending' },
+  { label: t('common.paid'), value: 'paid' }
 ]
+
+
+const statusFilter = ref(statuses[0])
+
+watch(locale,
+  () => statusFilter.value.label = t(`common.${statusFilter.value.value}`)
+)
+
+const rows = computed(() => {
+  if (statusFilter.value.value === 'pending') {
+    return store.state.invoices.filter(({ status }) => status === 'Pending')
+  }
+
+  if (statusFilter.value.value === 'paid') {
+    return store.state.invoices.filter(({ status }) => status === 'Paid')
+  }
+
+  return store.state.invoices
+})
 
 </script>
 

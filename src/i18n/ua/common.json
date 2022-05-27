@@ -1,4 +1,8 @@
 {
+  "all": "Всі",
+  "back": "Назад",
+  "delete": "Видалити",
+  "edit": "Редагувати",
   "invoices": "Квитанції",
   "invoiceId": "Номер Квитанції",
   "newInvoice": "Нова Квитанція",
@@ -10,5 +14,6 @@
   "pending": "Очікування",
   "paid": "Сплачено",
   "rowsPerPage": "К-сть рядків на 1 ст.",
+  "noInvoicesLabel": "Поки що немає квитанцій",
   "paginationLable": "{ firstRowIndex } - { endRowIndex } з { totalRowsNumber }"
 }

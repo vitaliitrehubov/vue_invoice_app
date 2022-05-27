@@ -1,4 +1,8 @@
 {
+  "all": "All",
+  "back": "Back",
+  "delete": "delete",
+  "edit": "edit",
   "invoices": "Invoices",
   "invoiceId": "Invoice Id",
   "newInvoice": "New Invoice",
@@ -10,5 +14,6 @@
   "pending": "Pending",
   "paid": "Paid",
   "rowsPerPage": "Rows per Page",
+  "noInvoicesLabel": "There are no invoices yet",
   "paginationLable": "{ firstRowIndex } - { endRowIndex } of { totalRowsNumber }"
 }
