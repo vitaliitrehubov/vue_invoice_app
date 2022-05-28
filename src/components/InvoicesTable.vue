@@ -1,7 +1,7 @@
 <template>
-  <div class="q-pt-lg invoices-table">
-    <q-table style="width: 900px; margin: 0 auto" :rows="filteredInvoices" :columns="columns" class="q-pa-lg"
-      row-key="invoiceId" :rows-per-page-label="$t('common.rowsPerPage')" :pagination-label="(firstRowIndex, endRowIndex, totalRowsNumber) =>
+  <div class="q-pt-lg">
+    <q-table :rows="filteredInvoices" :columns="columns" class="q-pa-lg invoices-table" row-key="invoiceId"
+      :rows-per-page-label="$t('common.rowsPerPage')" :pagination-label="(firstRowIndex, endRowIndex, totalRowsNumber) =>
       $t('common.paginationLable', { firstRowIndex, endRowIndex, totalRowsNumber })"
       :no-data-label="$t('common.noInvoicesLabel')">
       <template #top="props">
@@ -38,21 +38,19 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex'
-import { computed } from 'vue'
-import { statuses, columns, statusFilter } from 'src/constants/invoicesTable.js';
+import { statuses, columns } from 'src/constants/invoicesTable';
+import { useInvoice } from 'src/composition/useInvoice';
 
-const store = useStore()
-
-const filteredInvoices = computed(() => {
-  if (statusFilter.value.value === 'pending') {
-    return store.state.invoices.filter(({ status }) => status === 'Pending')
-  }
-
-  if (statusFilter.value.value === 'paid') {
-    return store.state.invoices.filter(({ status }) => status === 'Paid')
-  }
-
-  return store.state.invoices
-})
+const { statusFilter, filteredInvoices } = useInvoice()
 </script>
+
+<style scoped lang="scss">
+.invoices-table {
+  width: 900px;
+  margin: 0 auto;
+
+  &.fullscreen {
+    width: unset;
+  }
+}
+</style>

@@ -1,5 +1,5 @@
 <template>
-  <q-layout view="lHh Lpr lFf" class="q-pa-sm">
+  <q-layout class="q-pa-sm">
     <div class="row justify-end">
       <q-btn :label="$t('common.newInvoice')" icon="add" color="positive" @click="openPopup" />
     </div>

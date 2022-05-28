@@ -16,12 +16,7 @@
 </template>
 
 <script setup>
-import { useStore } from 'vuex'
-import { useRoute } from 'vue-router'
+import { useInvoice } from 'src/composition/useInvoice';
 
-const { params } = useRoute()
-const { commit } = useStore()
-const deleteInvoice = () => commit('deleteInvoice', { id: params.id })
+const { deleteInvoice } = useInvoice()
 </script>
-
-

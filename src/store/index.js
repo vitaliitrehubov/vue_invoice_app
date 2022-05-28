@@ -75,6 +75,17 @@ export default store(function (/* { ssrContext } */) {
         alert("invoice deleted: " + id);
       },
     },
+    actions: {
+      deleteInvoice(context, payload) {
+        setTimeout(() => {
+          context.commit("deleteInvoice", payload);
+        }, 2000);
+      },
+    },
+    getters: {
+      getInvoices: (state) => state.invoices,
+      getFirst4Invoices: (state, getters) => getters.getInvoices.slice(0, 2),
+    },
 
     // enable strict mode (adds overhead!)
     // for dev mode and --debug builds only

@@ -1,9 +1,20 @@
-import { ref, toRefs, computed } from "vue";
+import { ref, toRefs, computed, watch } from "vue";
+import { useStore } from "vuex";
+import { useRoute } from "vue-router";
+import { i18n } from "../boot/i18n.js";
 import { invoiceData } from "../constants/invoiceData.js";
+import { statuses } from "src/constants/invoicesTable";
 import { database } from "../firebase/firebaseInit.js";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 
 export const useInvoice = () => {
+  const {
+    getters: { getInvoices },
+    dispatch,
+  } = useStore();
+
+  const { params } = useRoute();
+
   const collectionRef = collection(database, "invoices");
   const isLoading = ref(false);
 
@@ -53,9 +64,33 @@ export const useInvoice = () => {
 
   const editInvoice = async () => {};
 
-  const deleteInvoice = async () => {};
+  const deleteInvoice = () => dispatch("deleteInvoice", { id: params.id });
+
+  const statusFilter = ref(statuses.value[0]);
+
+  const { t } = i18n.global;
+
+  const filteredInvoices = computed(() => {
+    if (statusFilter.value.value === "All") {
+      return getInvoices;
+    } else {
+      return getInvoices.filter(
+        ({ status }) => status === statusFilter.value.value
+      );
+    }
+  });
+
+  watch(
+    () => i18n.global.locale,
+    () =>
+      (statusFilter.value.label = t(
+        `common.${statusFilter.value.value.toLowerCase()}`
+      ))
+  );
 
   return {
+    filteredInvoices,
+    statusFilter,
     isLoading,
     loadInvoices,
     createInvoice,

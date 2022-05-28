@@ -1,12 +1,12 @@
 import { i18n } from "../boot/i18n.js";
-import { computed, watch, ref } from "vue";
+import { computed } from "vue";
 
 const { t } = i18n.global;
 
 export const statuses = computed(() => [
-  { label: t("common.all"), value: "all" },
-  { label: t("common.pending"), value: "pending" },
-  { label: t("common.paid"), value: "paid" },
+  { label: t("common.all"), value: "All" },
+  { label: t("common.pending"), value: "Pending" },
+  { label: t("common.paid"), value: "Paid" },
 ]);
 
 export const columns = computed(() => [
@@ -36,10 +36,3 @@ export const columns = computed(() => [
   },
   { name: "total", field: "total", label: t("common.total"), sortable: true },
 ]);
-
-export const statusFilter = ref(statuses.value[0]);
-
-watch(
-  () => i18n.global.locale,
-  () => (statusFilter.value.label = t(`common.${statusFilter.value.value}`))
-);

@@ -85,7 +85,6 @@ const {
   biller,
   clearForm,
   createInvoice,
-  loadInvoices,
   isFormFilledOut
 } = useInvoice()
 
