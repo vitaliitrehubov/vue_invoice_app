@@ -2,16 +2,16 @@ import { ref, toRefs, computed, watch } from "vue";
 import { useStore } from "vuex";
 import { useRoute } from "vue-router";
 import { i18n } from "../boot/i18n.js";
+import { NOTIFY_SHOW_MSG } from "../plugins/notify/notify.js";
 import { invoiceData } from "../constants/invoiceData.js";
 import { statuses } from "src/constants/invoicesTable";
 import { database } from "../firebase/firebaseInit.js";
 import { collection, addDoc, getDocs } from "firebase/firestore";
 
+const { t } = i18n.global;
+
 export const useInvoice = () => {
-  const {
-    getters: { getInvoices },
-    dispatch,
-  } = useStore();
+  const { getters, dispatch } = useStore();
 
   const { params } = useRoute();
 
@@ -43,22 +43,35 @@ export const useInvoice = () => {
   });
 
   const loadInvoices = async () => {
-    let invoices = [];
-    const results = await getDocs(collectionRef);
-    invoices = results.docs.map((item) => item.data());
-    console.log(invoices);
+    isLoading.value = true;
+    await dispatch("loadInvoices");
+    isLoading.value = false;
   };
 
   const createInvoice = async () => {
     try {
-      isLoading.value = true;
-      console.log("loading", isLoading.value);
-      addDoc(collectionRef, { id: "1111", num: 2 });
+      addDoc(collectionRef, {
+        ...formData.value,
+        dueDate: "01.01.2020",
+        id: Date.now(),
+        total: 900,
+        status: "Pending",
+      });
+
+      NOTIFY_SHOW_MSG({
+        color: "positive",
+        message: t("common.createdSuccessfully"),
+        icon: "assignment",
+      });
     } catch (e) {
+      NOTIFY_SHOW_MSG({
+        color: "negative",
+        message: t("common.creationError"),
+        icon: "error",
+      });
       console.log(e);
     } finally {
-      isLoading.value = false;
-      console.log("finished", isLoading.value);
+      console.log("finished");
     }
   };
 
@@ -68,13 +81,11 @@ export const useInvoice = () => {
 
   const statusFilter = ref(statuses.value[0]);
 
-  const { t } = i18n.global;
-
   const filteredInvoices = computed(() => {
     if (statusFilter.value.value === "All") {
-      return getInvoices;
+      return getters.getInvoices;
     } else {
-      return getInvoices.filter(
+      return getters.getInvoices.filter(
         ({ status }) => status === statusFilter.value.value
       );
     }

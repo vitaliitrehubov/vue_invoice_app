@@ -67,7 +67,7 @@
     <template #popupFooter>
       <div class="row justify-between">
         <q-btn @click="clearForm" color="negative" :label="$t('createInvoiceForm.discard')" />
-        <q-btn :disabled="!isFormFilledOut" type="submit" class="q-ml-sm" color="positive"
+        <q-btn @click="addInvoice" :disabled="!isFormFilledOut" type="submit" class="q-ml-sm" color="positive"
           :label="$t('createInvoiceForm.createInvoice')" />
       </div>
     </template>
@@ -79,6 +79,10 @@ import { onBeforeUnmount } from 'vue'
 import TheDialog from './shared/TheDialog.vue'
 import { useInvoice } from '../composition/useInvoice.js'
 import { ruleRequiredField } from '../constants/invoiceData';
+import { useStore } from 'vuex'
+
+const { dispatch } = useStore()
+const emits = defineEmits(['closePopup'])
 
 const {
   client,
@@ -87,6 +91,12 @@ const {
   createInvoice,
   isFormFilledOut
 } = useInvoice()
+
+const addInvoice = async () => {
+  await createInvoice()
+  emits('closePopup')
+  dispatch('loadInvoices')
+}
 
 onBeforeUnmount(() => clearForm())
 </script>

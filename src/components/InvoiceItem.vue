@@ -10,8 +10,6 @@
         <q-btn color="red" @click="deleteInvoice" icon="delete" :label="$t('common.delete')" class="q-ml-md" />
       </div>
     </div>
-
-    <h1>{{ $store.state.counter }}</h1>
   </div>
 </template>
 

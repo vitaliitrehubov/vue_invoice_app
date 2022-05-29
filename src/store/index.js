@@ -1,5 +1,8 @@
 import { store } from "quasar/wrappers";
 import { createStore } from "vuex";
+import { database } from "../firebase/firebaseInit.js";
+import { collection, getDocs } from "firebase/firestore";
+const collectionRef = collection(database, "invoices");
 
 // import example from './module-example'
 
@@ -16,63 +19,15 @@ export default store(function (/* { ssrContext } */) {
   const Store = createStore({
     state() {
       return {
-        invoices: [
-          {
-            invoiceId: 0,
-            clientName: "Kate Midlton",
-            dueDate: "pes",
-            status: "Pending",
-            total: 1000,
-          },
-          {
-            invoiceId: 1,
-            clientName: "Jorge Jr.",
-            dueDate: "pes",
-            status: "Paid",
-            total: 500,
-          },
-          {
-            invoiceId: 2,
-            clientName: "Vitalii Trehubov A.",
-            dueDate: "pes",
-            status: "Pending",
-            total: 1500,
-          },
-          {
-            invoiceId: 3,
-            clientName: "Mr. John",
-            dueDate: "pes",
-            status: "Paid",
-            total: 200,
-          },
-          {
-            invoiceId: 4,
-            clientName: "Kate Huston",
-            dueDate: "pes",
-            status: "Pending",
-            total: 900,
-          },
-          {
-            invoiceId: 5,
-            clientName: "Duglas Bob",
-            dueDate: "pes",
-            status: "Paid",
-            total: 250,
-          },
-          {
-            invoiceId: 6,
-            clientName: "L. Unopp",
-            dueDate: "pes",
-            status: "Pending",
-            total: 10500,
-          },
-        ],
-        counter: "sfsff",
+        invoices: [],
       };
     },
     mutations: {
       deleteInvoice(state, { id }) {
         alert("invoice deleted: " + id);
+      },
+      loadInvoices(state, { invoices }) {
+        state.invoices = invoices;
       },
     },
     actions: {
@@ -81,10 +36,19 @@ export default store(function (/* { ssrContext } */) {
           context.commit("deleteInvoice", payload);
         }, 2000);
       },
+      async loadInvoices({ commit }) {
+        try {
+          let invoices = [];
+          const results = await getDocs(collectionRef);
+          invoices = results.docs.map((item) => item.data());
+          commit("loadInvoices", { invoices });
+        } catch (e) {
+          console.log(e);
+        }
+      },
     },
     getters: {
       getInvoices: (state) => state.invoices,
-      getFirst4Invoices: (state, getters) => getters.getInvoices.slice(0, 2),
     },
 
     // enable strict mode (adds overhead!)

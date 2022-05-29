@@ -1,4 +1,6 @@
 {
+  "createdSuccessfully": "Invoice has been created successfully",
+  "creationError": "Some error occured! Invoice creation failed",
   "all": "All",
   "back": "Back",
   "delete": "delete",
