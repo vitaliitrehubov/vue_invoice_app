@@ -1,6 +1,6 @@
 <template>
   <div>
-    <q-btn-toggle v-model="chosenLang" toggle-color="accent" :options="langOptions" />
+    <q-btn-toggle v-model="chosenLang" toggle-color="primary" :options="langOptions" />
   </div>
 </template>
 

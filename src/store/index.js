@@ -23,22 +23,14 @@ export default store(function (/* { ssrContext } */) {
       };
     },
     mutations: {
-      deleteInvoice(state, { id }) {
-        alert("invoice deleted: " + id);
-      },
       loadInvoices(state, { invoices }) {
         state.invoices = invoices;
       },
     },
     actions: {
-      deleteInvoice(context, payload) {
-        setTimeout(() => {
-          context.commit("deleteInvoice", payload);
-        }, 2000);
-      },
       async loadInvoices({ commit }) {
         try {
-          let invoices = [];
+          let invoices;
           const results = await getDocs(collectionRef);
           invoices = results.docs.map((item) => ({
             ...item.data(),

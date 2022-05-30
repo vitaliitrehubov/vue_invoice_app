@@ -10,7 +10,7 @@
 
       <template #top="props">
         <div class="col-2 q-table__title flex items-center">{{ $t('common.invoices') }}
-          <q-badge class="q-ml-md q-pa-sm text-weight-bold" color="secondary">
+          <q-badge class="q-ml-md q-pa-sm text-weight-bold" color="primary">
             {{ filteredInvoices.length }}
           </q-badge>
         </div>
@@ -23,7 +23,7 @@
       <template #body="props">
         <q-tr :props="props">
           <q-td key="invoiceId" :props="props">
-            <router-link class="text-secondary" :to="{ name: 'InvoicePage', params: { id: props.row.id } }">#
+            <router-link class="text-primary" :to="{ name: 'InvoicePage', params: { id: props.row.id } }">#
               {{ props.row.id }}</router-link>
           </q-td>
           <q-td key="clientName" :props="props">{{ props.row.clientName }}</q-td>
