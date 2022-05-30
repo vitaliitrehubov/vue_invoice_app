@@ -1,6 +1,4 @@
 {
-  "createdSuccessfully": "Інвойс створено успішно",
-  "creationError": "Сталася помилка! Інвойс не створено",
   "all": "Всі",
   "back": "Назад",
   "delete": "Видалити",
@@ -17,5 +15,19 @@
   "paid": "Сплачено",
   "rowsPerPage": "К-сть рядків на 1 ст.",
   "noInvoicesLabel": "Поки що немає квитанцій",
-  "paginationLable": "{ firstRowIndex } - { endRowIndex } з { totalRowsNumber }"
+  "paginationLable": "{ firstRowIndex } - { endRowIndex } з { totalRowsNumber }",
+  "invoiceAction": {
+    "delete": {
+      "success": "Квитанцію видалено успішно",
+      "error": "Сталася помилка! Квитанцію не видалено"
+    },
+    "create": {
+      "success": "Квитанцію створено успішно",
+      "error": "Сталася помилка! Квитанцію не створено"
+    },
+    "edit": {
+      "success": "Квитанцію змінено успішно",
+      "error": "Сталася помилка! Квитанцію не змінено"
+    }
+  }
 }

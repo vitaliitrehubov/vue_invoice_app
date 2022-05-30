@@ -40,7 +40,10 @@ export default store(function (/* { ssrContext } */) {
         try {
           let invoices = [];
           const results = await getDocs(collectionRef);
-          invoices = results.docs.map((item) => item.data());
+          invoices = results.docs.map((item) => ({
+            ...item.data(),
+            id: item.id,
+          }));
           commit("loadInvoices", { invoices });
         } catch (e) {
           console.log(e);

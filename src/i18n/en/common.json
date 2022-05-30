@@ -1,6 +1,4 @@
 {
-  "createdSuccessfully": "Invoice has been created successfully",
-  "creationError": "Some error occured! Invoice creation failed",
   "all": "All",
   "back": "Back",
   "delete": "delete",
@@ -17,5 +15,19 @@
   "paid": "Paid",
   "rowsPerPage": "Rows per Page",
   "noInvoicesLabel": "There are no invoices yet",
-  "paginationLable": "{ firstRowIndex } - { endRowIndex } of { totalRowsNumber }"
+  "paginationLable": "{ firstRowIndex } - { endRowIndex } of { totalRowsNumber }",
+  "invoiceAction": {
+    "delete": {
+      "success": "Invoice has been deleted successfully",
+      "error": "An error occured! Invoice has not been deleted"
+    },
+    "create": {
+      "success": "Invoice has been created successfully",
+      "error": "An error occured! Invoice has not been created"
+    },
+    "edit": {
+      "success": "Invoice has been changed successfully",
+      "error": "An error occured! Invoice has not been changed"
+    }
+  }
 }

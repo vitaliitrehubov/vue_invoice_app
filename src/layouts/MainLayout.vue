@@ -12,6 +12,20 @@
 import NewInvoiceForm from '../components/NewInvoiceForm.vue'
 import InvoicesTable from '../components/InvoicesTable.vue'
 import { ref } from 'vue'
+import { onBeforeRouteLeave } from 'vue-router';
+import { useStore } from 'vuex'
+
+const { getters } = useStore()
+
+onBeforeRouteLeave((to, from, next) => {
+  // if (to.params.id) {
+  //   getters.getInvoices.some(({ id }) => id === to.params.id) && next()
+  // } else {
+  //   next({ name: '404Page' })
+  //   return
+  // }
+  next({ name: '404Page' })
+})
 
 const isPopupOpen = ref(false)
 const openPopup = () => isPopupOpen.value = true

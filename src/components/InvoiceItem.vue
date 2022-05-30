@@ -7,7 +7,8 @@
 
       <div>
         <q-btn color="green" icon="edit" :label="$t('common.edit')" />
-        <q-btn color="red" @click="deleteInvoice" icon="delete" :label="$t('common.delete')" class="q-ml-md" />
+        <q-btn color="red" @click="deleteInvoice(route.params.id)" icon="delete" :label="$t('common.delete')"
+          class="q-ml-md" />
       </div>
     </div>
   </div>
@@ -15,6 +16,9 @@
 
 <script setup>
 import { useInvoice } from 'src/composition/useInvoice';
+import { useRoute } from 'vue-router'
+
+const route = useRoute()
 
 const { deleteInvoice } = useInvoice()
 </script>
