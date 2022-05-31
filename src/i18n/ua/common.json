@@ -1,6 +1,8 @@
 {
   "all": "Всі",
   "back": "Назад",
+  "loading": "Завантаження...",
+  "close": "Закрити",
   "delete": "Видалити",
   "edit": "Редагувати",
   "invoices": "Квитанції",
@@ -15,7 +17,7 @@
   "paid": "Сплачено",
   "rowsPerPage": "К-сть рядків на 1 ст.",
   "noInvoicesLabel": "Поки що немає квитанцій",
-  "paginationLable": "{ firstRowIndex } - { endRowIndex } з { totalRowsNumber }",
+  "paginationLabel": "{ firstRowIndex } - { endRowIndex } з { totalRowsNumber }",
   "invoiceAction": {
     "delete": {
       "success": "Квитанцію видалено успішно",

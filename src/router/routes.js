@@ -5,9 +5,9 @@ const routes = [
     component: () => import("layouts/MainLayout.vue"),
   },
   {
-    name: "InvoicePage",
+    name: "InvoiceDetails",
     path: "/invoices/:id",
-    component: () => import("components/InvoiceItem.vue"),
+    component: () => import("components/InvoiceDetails.vue"),
   },
 
   // Always leave this as last one,

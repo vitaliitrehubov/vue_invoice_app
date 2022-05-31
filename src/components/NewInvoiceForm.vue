@@ -9,55 +9,51 @@
         <div class="q-my-md">
           <p class="text-subtitle1 q-mb-xs text-grey">{{ $t('createInvoiceForm.billTo') }}</p>
           <div class="q-mb-sm">
-            <q-input v-model.trim="client.name" lazy-rules :rules="[ruleRequiredField]"
+            <q-input v-model.trim="clientName" lazy-rules :rules="[ruleRequiredField]"
               :label="$t('createInvoiceForm.clientName')" filled />
           </div>
           <div class="row q-gutter-sm q-mb-sm">
             <div class="col">
-              <q-input v-model.trim="client.email" lazy-rules :rules="[ruleRequiredField]"
+              <q-input v-model.trim="clientEmail" lazy-rules :rules="[ruleRequiredField]"
                 :label="$t('createInvoiceForm.clientEmail')" filled />
             </div>
             <div class="col">
-              <q-input v-model.trim="client.street" lazy-rules :rules="[ruleRequiredField]"
+              <q-input v-model.trim="clientStreet" lazy-rules :rules="[ruleRequiredField]"
                 :label="$t('createInvoiceForm.streetAddress')" filled />
             </div>
           </div>
 
           <div class="row q-gutter-sm">
             <div class="col">
-              <q-input v-model.trim="client.zipCode" lazy-rules :rules="[ruleRequiredField]"
+              <q-input v-model.trim="clientZipCode" lazy-rules :rules="[ruleRequiredField]"
                 :label="$t('createInvoiceForm.zipCode')" filled />
             </div>
             <div class="col">
-              <q-input v-model.trim="client.city" lazy-rules :rules="[ruleRequiredField]"
+              <q-input v-model.trim="clientCity" lazy-rules :rules="[ruleRequiredField]"
                 :label="$t('createInvoiceForm.city')" filled />
             </div>
             <div class="col">
-              <q-input v-model.trim="client.country" lazy-rules :rules="[ruleRequiredField]"
+              <q-input v-model.trim="clientCountry" lazy-rules :rules="[ruleRequiredField]"
                 :label="$t('createInvoiceForm.country')" filled />
             </div>
           </div>
         </div>
 
         <div class="q-my-md">
-          <p class="text-subtitle1 q-mb-xs text-grey">{{ $t('createInvoiceForm.billFrom') }}</p>
-          <div class="q-mb-sm">
-            <q-input v-model.trim="biller.street" lazy-rules :rules="[ruleRequiredField]"
-              :label="$t('createInvoiceForm.streetAddress')" filled />
-          </div>
+          <p class="text-subtitle1 q-mb-xs text-grey">{{ $t('createInvoiceForm.paymentDetails') }}</p>
 
           <div class="row q-gutter-sm">
             <div class="col">
-              <q-input v-model.trim="biller.zipCode" lazy-rules :rules="[ruleRequiredField]"
-                :label="$t('createInvoiceForm.zipCode')" filled />
+              <q-input filled v-model="paymentDueDate" mask="date" :label="$t('createInvoiceForm.paymentDueDate')"
+                :rules="['date', ruleRequiredField]" />
             </div>
             <div class="col">
-              <q-input v-model.trim="biller.city" lazy-rules :rules="[ruleRequiredField]"
-                :label="$t('createInvoiceForm.city')" filled />
+              <q-input v-model.trim="paymentAmount" lazy-rules :rules="[ruleRequiredField]" maxlength="10"
+                :label="$t('createInvoiceForm.paymentAmount')" filled />
             </div>
             <div class="col">
-              <q-input v-model.trim="biller.country" :rules="[ruleRequiredField]"
-                :label="$t('createInvoiceForm.country')" filled />
+              <q-select filled v-model="invoiceStatus" :options="invoiceStatuses" :rules="[ruleRequiredField]"
+                :label="$t('createInvoiceForm.invoiceStatus')" />
             </div>
           </div>
         </div>
@@ -79,18 +75,28 @@ import { onBeforeUnmount } from 'vue'
 import TheDialog from './shared/TheDialog.vue'
 import { useInvoice } from '../composition/useInvoice.js'
 import { ruleRequiredField } from '../constants/invoiceData';
+import { invoiceStatuses } from 'src/constants/invoicesTable';
 import { useStore } from 'vuex'
 
 const { dispatch } = useStore()
 const emits = defineEmits(['closePopup'])
 
 const {
-  client,
-  biller,
+  paymentAmount,
+  paymentDueDate,
+  invoiceStatus,
+  clientName,
+  clientEmail,
+  clientStreet,
+  clientCity,
+  clientCountry,
+  clientZipCode,
+  invoiceCreationDate,
   clearForm,
   createInvoice,
   isFormFilledOut
 } = useInvoice()
+
 
 const addInvoice = async () => {
   await createInvoice()
@@ -98,5 +104,5 @@ const addInvoice = async () => {
   dispatch('loadInvoices')
 }
 
-onBeforeUnmount(() => clearForm())
+onBeforeUnmount(clearForm)
 </script>

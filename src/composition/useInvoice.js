@@ -28,19 +28,18 @@ export const useInvoice = () => {
 
   const clearForm = () => {
     for (const key in formData.value) {
-      for (const innerKey in formData.value[key]) {
-        formData.value[key][innerKey] = null;
-      }
+      formData.value[key] = null;
     }
   };
 
   const isFormFilledOut = computed(() => {
-    for (const key in formData.value.client) {
-      if (!formData.value.client[key]) return false;
-    }
-
-    for (const key in formData.value.biller) {
-      if (!formData.value.biller[key]) return false;
+    for (const key in formData.value) {
+      if (
+        formData.value[key] === "" ||
+        formData.value[key] === null ||
+        typeof formData.value[key] == "undefined"
+      )
+        return false;
     }
 
     return true;
@@ -75,9 +74,7 @@ export const useInvoice = () => {
     try {
       addDoc(collectionRef, {
         ...formData.value,
-        dueDate: "01.01.2020",
-        total: 900,
-        status: "Pending",
+        invoiceCreationDate: Date.now(),
       });
       NOTIFY_SHOW_MSG({
         color: "positive",
@@ -124,7 +121,7 @@ export const useInvoice = () => {
       return getters.getInvoices;
     } else {
       return getters.getInvoices.filter(
-        ({ status }) => status === statusFilter.value.value
+        ({ invoiceStatus }) => invoiceStatus.value === statusFilter.value.value
       );
     }
   });

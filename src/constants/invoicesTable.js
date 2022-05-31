@@ -9,10 +9,15 @@ export const statuses = computed(() => [
   { label: t("common.paid"), value: "Paid" },
 ]);
 
+export const invoiceStatuses = computed(() => [
+  { label: t("common.pending"), value: "Pending" },
+  { label: t("common.paid"), value: "Paid" },
+]);
+
 export const columns = computed(() => [
   {
-    name: "invoiceId",
-    field: "invoiceId",
+    name: "id",
+    field: "id",
     label: t("common.invoiceId"),
     align: "left",
   },
@@ -23,16 +28,21 @@ export const columns = computed(() => [
     align: "left",
   },
   {
-    name: "dueDate",
-    field: "dueDate",
+    name: "paymentDueDate",
+    field: "paymentDueDate",
     label: t("common.dueDate"),
     align: "left",
   },
   {
-    name: "status",
-    field: "status",
+    name: "invoiceStatus",
+    field: "invoiceStatus",
     label: t("common.status"),
     align: "center",
   },
-  { name: "total", field: "total", label: t("common.total"), sortable: true },
+  {
+    name: "paymentTotal",
+    field: "paymentTotal",
+    label: t("common.total"),
+    sortable: true,
+  },
 ]);
