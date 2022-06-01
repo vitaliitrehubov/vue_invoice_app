@@ -5,6 +5,7 @@
   "close": "Close",
   "delete": "delete",
   "edit": "edit",
+  "update": "update",
   "invoices": "Invoices",
   "invoiceId": "Invoice Id",
   "newInvoice": "New Invoice",

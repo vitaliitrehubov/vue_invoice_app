@@ -1,7 +1,7 @@
 import common from "./common.json";
-import createInvoiceForm from "./createInvoiceForm.json";
+import invoiceForm from "./invoiceForm.json";
 
 export default {
   common,
-  createInvoiceForm,
+  invoiceForm,
 };

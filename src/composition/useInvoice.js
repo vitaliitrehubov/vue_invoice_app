@@ -6,13 +6,20 @@ import { NOTIFY_SHOW_MSG } from "../plugins/notify/notify.js";
 import { invoiceData } from "../constants/invoiceData.js";
 import { statuses } from "src/constants/invoicesTable";
 import { database } from "../firebase/firebaseInit.js";
-import { collection, addDoc, deleteDoc, doc, getDoc } from "firebase/firestore";
+import {
+  collection,
+  doc,
+  getDoc,
+  addDoc,
+  updateDoc,
+  deleteDoc,
+} from "firebase/firestore";
 
 const { t } = i18n.global;
 
 export const useInvoice = () => {
   const invoiceDetailsState = reactive({
-    invoice: null,
+    invoice: { ...invoiceData },
     isLoading: false,
   });
 
@@ -21,29 +28,6 @@ export const useInvoice = () => {
 
   const collectionRef = collection(database, "invoices");
   const isLoading = ref(false);
-
-  const formData = ref({
-    ...invoiceData,
-  });
-
-  const clearForm = () => {
-    for (const key in formData.value) {
-      formData.value[key] = null;
-    }
-  };
-
-  const isFormFilledOut = computed(() => {
-    for (const key in formData.value) {
-      if (
-        formData.value[key] === "" ||
-        formData.value[key] === null ||
-        typeof formData.value[key] == "undefined"
-      )
-        return false;
-    }
-
-    return true;
-  });
 
   const loadInvoices = async () => {
     isLoading.value = true;
@@ -70,12 +54,9 @@ export const useInvoice = () => {
     }
   };
 
-  const createInvoice = async () => {
+  const createInvoice = async (data) => {
     try {
-      addDoc(collectionRef, {
-        ...formData.value,
-        invoiceCreationDate: Date.now(),
-      });
+      addDoc(collectionRef, { ...data });
       NOTIFY_SHOW_MSG({
         color: "positive",
         message: t("common.invoiceAction.create.success"),
@@ -91,7 +72,24 @@ export const useInvoice = () => {
     }
   };
 
-  const editInvoice = async () => {};
+  const editInvoice = async (invoiceId, invoiceData) => {
+    try {
+      const docRef = doc(database, "invoices", invoiceId);
+      await updateDoc(docRef, { ...invoiceData });
+      NOTIFY_SHOW_MSG({
+        color: "positive",
+        message: t("common.invoiceAction.edit.success"),
+        icon: "delete",
+      });
+    } catch (e) {
+      NOTIFY_SHOW_MSG({
+        color: "negative",
+        message: t("common.invoiceAction.edit.error"),
+        icon: "error",
+      });
+      console.log(e);
+    }
+  };
 
   const deleteInvoice = async (invoiceId) => {
     try {
@@ -144,8 +142,5 @@ export const useInvoice = () => {
     createInvoice,
     editInvoice,
     deleteInvoice,
-    clearForm,
-    isFormFilledOut,
-    ...toRefs(formData.value),
   };
 };

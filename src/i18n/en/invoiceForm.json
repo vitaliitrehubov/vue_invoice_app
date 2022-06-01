@@ -13,5 +13,7 @@
   "paymentAmount": "Payment total",
   "discard": "Discard",
   "createInvoice": "Create Invoice",
+  "updateInvoice": "Update Invoice",
+  "editInvoice": "Edit Invoice",
   "requiredField": "Required"
 }

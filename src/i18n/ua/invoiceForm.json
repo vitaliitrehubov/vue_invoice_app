@@ -13,5 +13,7 @@
   "paymentAmount": "Сума платежу",
   "discard": "Очистити",
   "createInvoice": "Створити Квитанцію",
+  "editInvoice": "Оновити Квитанцію",
+  "updateInvoice": "Оновити Квитанцію",
   "requiredField": "Обов'язкове поле"
 }

@@ -23,7 +23,7 @@
       <template #body="props">
         <q-tr :props="props">
           <q-td key="id" :props="props">
-            <router-link class="text-primary" :to="{ name: 'InvoiceDetails', params: { id: props.row.id } }">#
+            <router-link class="text-secondary" :to="{ name: 'InvoiceDetails', params: { id: props.row.id } }">#
               {{ props.row.id }}</router-link>
           </q-td>
           <q-td key="clientName" :props="props">{{ truncateLongText(props.row.clientName, 25) }}

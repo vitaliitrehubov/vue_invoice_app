@@ -3,15 +3,29 @@
     <div class="row justify-end">
       <q-btn :label="$t('common.newInvoice')" icon="add" color="positive" @click="openPopup" />
     </div>
-    <new-invoice-form v-if="isPopupOpen" @closePopup="closePopup"></new-invoice-form>
+    <invoice-form v-if="isPopupOpen" @submitForm="addInvoice" @closePopup="closePopup"
+      :actionBtnLabel="$t('invoiceForm.createInvoice')" :formHeader="$t('invoiceForm.newInvoice')">
+    </invoice-form>
     <invoices-table></invoices-table>
   </q-layout>
 </template>
 
 <script setup>
-import NewInvoiceForm from '../components/NewInvoiceForm.vue'
+import InvoiceForm from '../components/InvoiceForm.vue'
 import InvoicesTable from '../components/InvoicesTable.vue'
+import { useInvoice } from '../composition/useInvoice.js'
+import { useStore } from 'vuex'
 import { ref } from 'vue'
+
+const { createInvoice } = useInvoice()
+const { dispatch } = useStore()
+
+const addInvoice = async (data) => {
+  console.log(data, 'data')
+  closePopup()
+  await createInvoice(data)
+  await dispatch('loadInvoices')
+}
 
 const isPopupOpen = ref(false)
 const openPopup = () => isPopupOpen.value = true

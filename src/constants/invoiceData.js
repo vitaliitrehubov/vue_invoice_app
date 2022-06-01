@@ -14,4 +14,4 @@ export const invoiceData = {
 };
 
 export const ruleRequiredField = (val) =>
-  val !== null && val !== "" ? null : t("createInvoiceForm.requiredField");
+  val !== null && val !== "" ? null : t("invoiceForm.requiredField");
