@@ -21,7 +21,6 @@ const { createInvoice } = useInvoice()
 const { dispatch } = useStore()
 
 const addInvoice = async (data) => {
-  console.log(data, 'data')
   closePopup()
   await createInvoice(data)
   await dispatch('loadInvoices')

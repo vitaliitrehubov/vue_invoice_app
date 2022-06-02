@@ -10,8 +10,8 @@ export const statuses = computed(() => [
 ]);
 
 export const invoiceStatuses = computed(() => [
-  { label: t("common.pending"), value: "Pending" },
-  { label: t("common.paid"), value: "Paid" },
+  { label: t("common.pending"), value: t("common.pending") },
+  { label: t("common.paid"), value: t("common.paid") },
 ]);
 
 export const columns = computed(() => [

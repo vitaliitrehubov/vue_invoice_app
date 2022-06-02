@@ -1,4 +1,4 @@
-import { reactive, ref, toRefs, computed, watch } from "vue";
+import { reactive, ref, computed, watch } from "vue";
 import { useStore } from "vuex";
 import { useRouter } from "vue-router";
 import { i18n } from "../boot/i18n.js";
@@ -126,10 +126,11 @@ export const useInvoice = () => {
 
   watch(
     () => i18n.global.locale,
-    () =>
-      (statusFilter.value.label = t(
+    () => {
+      statusFilter.value.label = t(
         `common.${statusFilter.value.value.toLowerCase()}`
-      ))
+      );
+    }
   );
 
   return {
