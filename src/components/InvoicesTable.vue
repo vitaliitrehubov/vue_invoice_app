@@ -26,11 +26,11 @@
             <router-link class="text-secondary" :to="{ name: 'InvoiceDetails', params: { id: props.row.id } }">#
               {{ props.row.id }}</router-link>
           </q-td>
-          <q-td key="clientName" :props="props">{{ truncateLongText(props.row.clientName, 25) }}
+          <q-td key="name" :props="props">{{ truncateLongText(props.row.name, 25) }}
           </q-td>
           <q-td key="paymentDueDate" :props="props">{{ props.row.paymentDueDate }}</q-td>
           <q-td key="invoiceStatus" :props="props">
-            <q-badge :color="props.row.invoiceStatus.value === 'Pending' ? 'grey-7' : 'positive'">
+            <q-badge :color="props.row.invoiceStatus.value === 'pending' ? 'grey-7' : 'positive'">
               {{ $t(`common.${props.row.invoiceStatus.value.toLowerCase()}`) }}
             </q-badge>
           </q-td>

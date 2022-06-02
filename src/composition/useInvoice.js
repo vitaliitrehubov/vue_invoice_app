@@ -42,7 +42,7 @@ export const useInvoice = () => {
       const docRef = doc(database, "invoices", id);
       const invoiceData = await getDoc(docRef, id);
 
-      invoiceDetailsState.invoice = await invoiceData.data();
+      invoiceDetailsState.invoice = await { ...invoiceData.data(), id: invoiceData.id };
 
       if (!invoiceDetailsState.invoice) {
         router.push({ name: "404Page" });
@@ -119,7 +119,8 @@ export const useInvoice = () => {
       return getters.getInvoices;
     } else {
       return getters.getInvoices.filter(
-        ({ invoiceStatus }) => invoiceStatus.value === statusFilter.value.value
+        ({ invoiceStatus }) =>
+          invoiceStatus.value.toLowerCase() === statusFilter.value.value.toLowerCase()
       );
     }
   });

@@ -9,31 +9,31 @@
         <div class="q-my-md">
           <p class="text-subtitle1 q-mb-xs text-grey">{{ $t('invoiceForm.billTo') }}</p>
           <div class="q-mb-sm">
-            <q-input v-model="invoiceState.clientName" lazy-rules :rules="[ruleRequiredField]"
-              :label="$t('invoiceForm.clientName')" filled />
+            <q-input v-model="invoiceState.name" lazy-rules :rules="[ruleRequiredField]"
+              :label="$t('invoiceForm.name')" filled />
           </div>
           <div class="row q-gutter-sm q-mb-sm">
             <div class="col">
-              <q-input v-model="invoiceState.clientEmail" lazy-rules :rules="[ruleRequiredField]"
-                :label="$t('invoiceForm.clientEmail')" filled />
+              <q-input v-model="invoiceState.email" lazy-rules :rules="[ruleRequiredField]"
+                :label="$t('invoiceForm.email')" filled />
             </div>
             <div class="col">
-              <q-input v-model="invoiceState.clientStreet" lazy-rules :rules="[ruleRequiredField]"
-                :label="$t('invoiceForm.streetAddress')" filled />
+              <q-input v-model="invoiceState.street" lazy-rules :rules="[ruleRequiredField]"
+                :label="$t('invoiceForm.street')" filled />
             </div>
           </div>
 
           <div class="row q-gutter-sm">
             <div class="col">
-              <q-input v-model="invoiceState.clientZipCode" lazy-rules :rules="[ruleRequiredField]"
+              <q-input v-model="invoiceState.zipCode" lazy-rules :rules="[ruleRequiredField]"
                 :label="$t('invoiceForm.zipCode')" filled />
             </div>
             <div class="col">
-              <q-input v-model="invoiceState.clientCity" lazy-rules :rules="[ruleRequiredField]"
+              <q-input v-model="invoiceState.city" lazy-rules :rules="[ruleRequiredField]"
                 :label="$t('invoiceForm.city')" filled />
             </div>
             <div class="col">
-              <q-input v-model="invoiceState.clientCountry" lazy-rules :rules="[ruleRequiredField]"
+              <q-input v-model="invoiceState.country" lazy-rules :rules="[ruleRequiredField]"
                 :label="$t('invoiceForm.country')" filled />
             </div>
           </div>

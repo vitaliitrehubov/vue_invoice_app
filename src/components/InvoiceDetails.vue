@@ -21,8 +21,29 @@
             class="q-ml-md" />
         </div>
       </div>
-      <div>
-        {{ invoiceDetailsState.invoice }}
+      <div class="q-mt-lg">
+        <q-card class="q-pa-lg" style="width: 500px; margin: 0 auto">
+          <q-card-section>
+            <p class="text-h6 flex justify-between">
+              <span class="text-grey">{{ $t('common.invoice') }}</span>
+              <span>{{ invoiceDetailsState.invoice.id }}</span>
+            </p>
+          </q-card-section>
+
+          <q-card-section>
+            <div class="q-py-sm flex justify-between" v-for="(value, key) of invoiceDetailsState.invoice" :key="key">
+              <span class="text-grey">{{ $t(`invoiceForm.${key}`) }}</span>
+              <template v-if="key === 'invoiceStatus'">
+                <q-badge :color="value.value.toLowerCase() === 'pending' ? 'grey-7' : 'positive'">
+                  {{ $t(`common.${value.value.toLowerCase()}`) }}
+                </q-badge>
+              </template>
+              <template v-else>
+                <span>{{ value }}</span>
+              </template>
+            </div>
+          </q-card-section>
+        </q-card>
       </div>
     </template>
   </div>

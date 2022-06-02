@@ -2,12 +2,12 @@ import { i18n } from "../boot/i18n.js";
 const { t } = i18n.global;
 
 export const invoiceData = {
-  clientName: null,
-  clientStreet: null,
-  clientCity: null,
-  clientCountry: null,
-  clientEmail: null,
-  clientZipCode: null,
+  name: null,
+  street: null,
+  city: null,
+  country: null,
+  email: null,
+  zipCode: null,
   paymentDueDate: null,
   paymentAmount: null,
   invoiceStatus: null,

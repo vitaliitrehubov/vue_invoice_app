@@ -1,8 +1,9 @@
 {
   "newInvoice": "New Invoice",
-  "clientName": "Client's Name",
-  "clientEmail": "Client's Email",
-  "streetAddress": "Street Address",
+  "id": "#",
+  "name": "Name",
+  "email": "Email",
+  "street": "Street",
   "zipCode": "Zip Code",
   "city": "City",
   "country": "Country",
